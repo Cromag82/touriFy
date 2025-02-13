@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giras</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+    <form action="/logout" method="POST">
+        <button class="logout" id="logout" type="submit">Log Out</button>
+    </form>
+    <h1>Giras</h1>
+    <table style="border-collapse: collapse; width: 50%; text-align: left;">
+    <thead>
+        <tr>
+            <th>Banda</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Final</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% giras.forEach(gira => { %>
+            <tr>
+                <% if (gira.banda) { %>
+                <td><%= gira.banda %></td>
+                <td><%= gira.fecha_inicio %></td>
+                <td><%= gira.fecha_final %></td>
+                <form action="/gira/" method="GET">
+                    <input type="hidden" name="id" value="<%= gira.id %>">
+                    <input type="hidden" name="user_id" value="<%= user_id %>">
+                    
+                    <td><button type="submit">Ver Gira</button></td>
+                    <% } %>
+                </form>
+            </tr>
+        <% }) %>
+    </tbody>
+    </table>
+    <br>
+    <h2>Agregar nueva gira</h2>
+    <br>
+    <form action="/giras" method="POST">
+        <input type="text" name="nombre" placeholder="Nombre de la banda" required>
+        <input type="date" name="fecha_inicio" placeholder="Fecha inicio" required>
+        <input type="date" name="fecha_final" placeholder="Fecha final" required>
+        <input type="hidden" name="user_id" value="<%= user_id %>">
+        <button type="submit" onclick="window.location.href='/nueva_gira'">Agregar Gira</button>
+    </form>
+    <br>
+</body>
+</html>

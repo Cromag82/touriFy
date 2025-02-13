@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolo</title>
+    <link rel="stylesheet" href="/styles/stylesGastos.css">
+
+</head>
+<body>
+    <% bolo.forEach(b => { %>
+    <h1>
+        <%= nombre %> - <%= b.fecha %> - <%= b.sala %>
+    </h1>
+    <% }) %>
+    <div class="container">
+        <div class="column">
+           
+            <h2>GASTOS: <%= total %></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% gastos.forEach(g => { %>
+                    <form action="/gira/bolo" method="POST">
+                        <input type="hidden" name="formType" value="formGastos">
+                        <tr>
+                            <td>Catering</td>
+                            <td><input type="text" name="catering" value="<%= g.catering %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Teloneros</td>
+                            <td><input type="text" name="teloneros" value="<%= g.teloneros %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Cena</td>
+                            <td><input type="text" name="cena_bo" value="<%= g.cena_bo %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Producción Local</td>
+                            <td><input type="text" name="produccion_local" value="<%= g.produccion_local %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Parking</td>
+                            <td><input type="text" name="parking" value="<%= g.parking %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Hotel</td>
+                            <td><input type="text" name="hotel" value="<%= g.hotel %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Cartelería</td>
+                            <td><input type="text" name="carteleria" value="<%= g.carteleria %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Envíos</td>
+                            <td><input type="text" name="envios" value="<%= g.envios %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Promo Cartelería</td>
+                            <td><input type="text" name="promo_carteleria" value="<%= g.promo_carteleria %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Promo Online</td>
+                            <td><input type="text" name="promo_online" value="<%= g.promo_online %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Coste Banda</td>
+                            <td><input type="text" name="coste_banda" value="<%= g.coste_banda %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Coste Sala</td>
+                            <td><input type="text" name="coste_sala" value="<%= g.coste_sala %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Extras Sala</td>
+                            <td><input type="text" name="extras_sala" value="<%= g.extras_sala %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Taxis</td>
+                            <td><input type="text" name="taxis" value="<%= g.taxis %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Iva</td>
+                            <td><input type="text" name="iva" value="<%= g.iva %>"></td>
+                        </tr>
+                        <tr>
+                            <td>Sgae</td>
+                            <td><input type="text" name="sgae" value="<%= g.sgae %>"></td>
+                        </tr>
+
+                        <input type="hidden" name="concierto_id" value="<%= id %>">
+                        <input type="hidden" name="nombre" value="<%= nombre %>">
+                        <input type="hidden" name="user_id" value="<%= user_id %>">
+                        <button type="submit">Actualizar costes</button>
+                    </form>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="column">
+            <h2>INGRESOS: <%= totalVentas %></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Anticipada</th>
+                        <th>Precio</th>
+                        <th>Ventas</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% ingresos.forEach(i => { %>
+                    <form action="/gira/bolo" method="POST">
+                        <input type="hidden" name="formType" value="formIngresos">
+                        <input type="hidden" name="concierto_id" value="<%= i.concierto_id %>">
+                        <tr>
+                            <td>Online</td>
+                            <td><%= i.precio_anticipada %></td>
+                            <td><input type="text" name="anticipada_online" value="<%= i.anticipada_online %>"></td>
+                            <td><%= i.totalAnticipadaOnline %></td>
+                        </tr>
+                        <tr>
+                            <td>Física</td>
+                            <td><%= i.precio_anticipada %></td>
+                            <td><input type="text" name="anticipada_tienda" value="<%= i.anticipada_tienda %>"></td>
+                            <td><%= i.totalAnticipadaTienda %></td>
+                        </tr>
+                        <tr>
+                            <td>Taquilla</td>
+                            <td><%= i.precio_taquilla %></td>
+                            <td><input type="text" name="taquilla" value="<%= i.taquilla %>"></td>
+                            <td><%= i.totalTaquilla %></td>
+                        </tr>
+                        <input type="hidden" name="nombre" value="<%= nombre %>">
+                        <input type="hidden" name="user_id" value="<%= user_id %>">
+                        <button type="submit">Actualizar ventas</button>
+                    </form>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <% bolo.forEach(b => { %>
+    <div class="notas">
+        
+        <form action="/gira/bolo" method="POST" class="form-grid">
+            <input type="hidden" name="formType" value="notas">
+            <input type="hidden" name="concierto_id" value="<%= b.id %>">
+            <input type="hidden" name="total" value="<%= total %>">
+            <input type="hidden" name="nombre" value="<%= nombre %>">
+            <div class="col1">
+                <label for="notas">Notas:</label>
+                <button type="submit">Actualizar notas</button>
+            </div>
+            <div class="col2"> 
+                <textarea form_id="notas" name="notas" id="notas" placeholder="<%= b.notas %>"></textarea>
+            </div>
+        </form>
+    <% }) %>
+    </div>
+    
+    <h1>Resultado del concierto: <%= resultado %></h1>
+    <div class="volver">
+        <form action="/gira/" method="GET">
+            <input type="hidden" name="id" value="<%= giraId %>">
+            <input type="hidden" name="user_id" value="<%= user_id %>">
+            <button type="submit">Volver a gira</button>
+        </form>
+    </div>
+</body>
+</html>

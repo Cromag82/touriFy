@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gira</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #343a40;
+        }
+
+        table {
+            background-color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th {
+            background-color: #6c757d;
+            color: #fff;
+        }
+
+        button {
+            min-width: 150px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .back-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Gira: <%= nombre %>
+        </h1>
+
+        <div class="mb-5">
+            <table class="table table-striped table-bordered">
+                <thead class="text-center">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Ciudad</th>
+                        <th>Sala</th>
+                        <th>Resultado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% gira.forEach(bolo=> { %>
+                        <tr class="text-center">
+                            <td>
+                                <%= bolo.fecha %>
+                            </td>
+                            <td>
+                                <%= bolo.ciudad %>
+                            </td>
+                            <td>
+                                <%= bolo.sala %>
+                            </td>
+                            <td>
+                                <%= bolo.resultado %>
+                            </td>
+                            <td>
+                                <form action="/gira/bolo/" method="GET">
+                                    <input type="hidden" name="id" value="<%= bolo.id %>">
+                                    <input type="hidden" name="user_id" value="<%= user_id %>">
+                                    <button class="btn btn-primary btn-sm" type="submit">Gastos/ingresos</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="resultado">
+            <h1>Resultado de la gira: <%= total%>
+            </h1>
+        </div>
+
+        <div class="back-buttons">
+            <form action="/giras" method="GET">
+                <input type="hidden" name="id" value="<%= user_id %>">
+                <button class="btn btn-secondary">Volver</button>
+            </form>
+            <form action="/nueva_gira" method="GET">
+                <% gira.forEach(bolo=> { %>
+                    <input type="hidden" name="id" value="<%= bolo.gira_id %>">
+                    <% }) %>
+                    <input type="hidden" name="banda" value="<%= nombre %>">
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

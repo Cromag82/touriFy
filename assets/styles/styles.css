@@ -1,0 +1,138 @@
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    
+    min-height: 100vh;
+    background-color: white;
+    padding: 20px;
+}
+
+header {
+    width: 100%;
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #343a40;
+}
+
+h2 {
+    text-align: left !important;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor del formulario */
+.form-container {
+    align-items: center;
+    width: 100%; /* Adaptable al ancho de la pantalla */
+    max-width: 500px; /* Máximo tamaño para pantallas grandes */
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container input[type="text"],
+.form-container input[type="date"],
+.form-container button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 15px; 
+}
+
+input,
+button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+}
+
+.logout {
+    background-color: #a70404;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 10%;
+    margin-left: auto;
+}
+
+.logout:hover {
+    background-color: #850b2f;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+table {
+    align-self: center;
+    background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse; 
+    width: 100%; 
+}
+
+thead {
+    width: 100%;
+}
+
+th, td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd; /* Opcional, para bordes visibles */
+    box-sizing: border-box;
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.login {
+    display: flex;
+    
+}
+
+/* Estilos responsivos */
+@media (min-width: 768px) {
+    .form-container {
+        padding: 30px;
+    }
+
+    input,
+    button {
+        font-size: 18px;
+    }
+}

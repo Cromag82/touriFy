@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+h1, h2 {
+    text-align: center;
+    
+}
+.container {
+    display: flex;
+    gap: 20px;
+    margin: 20px;
+}
+.column {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    min-height: 100px; /* Mayor altura para columnas */
+    overflow-y: auto; /* Scroll si contenido excede altura */
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+button {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
+
+.volver{
+    position: relative;
+    top: -10px; /* Mueve hacia arriba */
+    left: 20px; /* Mueve hacia la derecha */
+    text-align: center;
+}
+
+.notas {
+    width: 60%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estructura del formulario en columnas */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* La columna 2 será más ancha */
+    gap: 20px; /* Espacio entre columnas */
+    align-items: center;
+}
+
+/* Columna 1: Label y botón */
+.col1 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre elementos */
+}
+
+.col1 label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Botón estilizado */
+.col1 button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.col1 button:hover {
+    background-color: #0056b3;
+}
+
+/* Columna 2: Área de texto */
+.col2 textarea {
+    width: 100%;
+    height: 120px; /* Ajusta la altura del textarea */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    resize: none; /* Evita redimensionar */
+    box-sizing: border-box; /* Asegura que el padding no desborde */
+}
+
+/* Estilos responsivos */
+@media (min-width: 768px) {
+    .form-container {
+        padding: 30px;
+    }
+
+    input,
+    button {
+        font-size: 18px;
+    }
+}

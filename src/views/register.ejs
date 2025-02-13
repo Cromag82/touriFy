@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/styles/stylesLogin.css">
+</head>
+<body>
+    <div class="login-container">
+        <form action="/register" method="POST">
+            Nombre de usuario: <input type="text" id="usuario" name="usuario" required>
+            Password: <input type="password" id="password" name="password" required>
+            <button type="submit">Registrar</button>
+            <br>
+        </form>
+        <% if (me) { %>
+            <p class="error-message" style="color: red;"><%= me %></p>
+        <% } %>
+        <br>
+        <button class="noLogin" onclick="window.location.href='/login'">Volver a log in</button>
+    </div>
+</body>
+</html>

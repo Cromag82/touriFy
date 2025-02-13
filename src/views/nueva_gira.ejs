@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Gira</title>
+    <link rel="stylesheet" href="/styles/styles.css">    
+</head>
+<body>
+
+    <h1>Nueva Gira de <%= banda %></h1>
+
+    <table style="border-collapse: collapse; width: 50%; text-align: left;">
+        <thead>
+            <tr>
+                <th>Ciudad</th>
+                <th>Sala</th>
+                <th>Fecha</th>
+                <th>Precio anticipada</th>
+                <th>Precio taquilla</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% conciertos.forEach(bolo => { %>
+                <tr>
+                    <td><%= bolo.ciudad %></td>
+                    <td><%= bolo.sala %></td>
+                    <td><%= bolo.fecha %></td>
+                    <td><%= bolo.precio_anticipada %></td>
+                    <td><%= bolo.precio_taquilla %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <br>
+    <form action="/nueva_gira" method="POST">
+        <input type="text" name="ciudad" placeholder="Ciudad" required>
+        <input type="text" name="sala" placeholder="Sala" required>
+        <input type="date" name="fecha" placeholder="Fecha concierto" required>
+        <input type="text" name="precio_anticipada" placeholder="Precio anticipada" required>
+        <input type="text" name="precio_taquilla" placeholder="Precio taquilla" required>
+        <input type="hidden" name="id" value="<%= id %>">
+        <input type="hidden" name="user_id" value="<%= user_id%>">
+        <input type="hidden" name="banda" value="<%= banda %>">
+        <button type="submit">Agregar concierto</button>
+    </form>
+<br>
+
+<form action="/giras" method="GET">
+    <input type="hidden" name="id" value="<%= user_id%>">
+    <button type="submit">Volver</button>
+</form>
+
+</body>
+</html>
