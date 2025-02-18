@@ -20,10 +20,10 @@ Este proyecto no tiene un front-end, sino unas vistas en ```.ejs```. En el futur
 - Node.js
 - Express
 - MySQL
-- Login con JWT y bcrypt
+- JWT
 
 ### Pre-Instalación
-En el archivo ```assets\setup.sql``` se genera una base de datos llamada ```de_gira```. Si desea cambiar el nombre de la base de datos, debe hacerlo en el archivo ```assets\setup.sql``` (fila 1) como tu conector en el archivo ```src\models\database_connector.js``` (fila 7).
+En el archivo ```assets\setup.sql``` se genera una base de datos llamada ```de_gira```. Si desea cambiar el nombre de la base de datos, debe hacerlo en el archivo ```assets\setup.sql``` (fila 1) como en el conector en el archivo ```src\models\database_connector.js``` (fila 7).
 
 En el archivo ```src\service\initializeDatabase.js``` puede modificar el salt del hash de bcrypt para encriptar la contraseña del admin (fila 13) y en ```src\controllers\loginController.js``` puede modificar el salt del hash de bcrypt para encriptar las contraseñas de los usuarios (fila 48).
 

@@ -137,11 +137,12 @@ const getBolo = async (req,res) => {
         const query2 = `SELECT ${cols2[0][0].cols} FROM gastos WHERE concierto_id = ? LIMIT 1`;
         // hemos sustituido los valores fijos de las columnas por dinámicos, por si añadimos campos de gastos
         const [gastos] = await db.query(query2, [id]);
-        const query3 = 'SELECT precio_anticipada, precio_taquilla, anticipada_online, anticipada_tienda, taquilla, concierto_id FROM ingresos WHERE concierto_id = ?'
-        const [ingresos] = await db.query(query3, [id])
-        const totalVentas = giraService.totalVentas(ingresos);
+        const query3 = 'SELECT precio_anticipada, gastos_gestion, precio_taquilla, anticipada_online, anticipada_tienda, taquilla_tarjeta, taquilla_efectivo, concierto_id FROM ingresos WHERE concierto_id = ?'
+        const [ingresos] = await db.query(query3, [id]);
+        const ing = giraService.totalVentas(ingresos);
+        const totalVentas = ing.total;
         const resultado = parseFloat(totalVentas - Number(total)).toFixed(2);
-        await db.query('UPDATE concierto SET coste = ? WHERE id = ?', [resultado, id]);
+        await db.query('UPDATE gastos SET ticketing = ? * ? * 0.03 WHERE id = ?', [ing.precio_anticipada, ing.anticipada_online, id]);
         res.render('bolo', { bolo, nombre, gastos, total, ingresos, totalVentas, resultado, id, giraId, user_id });
     } catch (err) {
         console.log(err);
@@ -172,10 +173,13 @@ const postGastos = async (req,res) => {
         } else if (req.body.formType == 'formIngresos') {
             const ingresos = req.body;
             const queryIngresos = 'UPDATE ingresos SET ' + 
-                                  'anticipada_online = ?, anticipada_tienda = ? , taquilla = ? WHERE concierto_id = ?';
-            await db.query(queryIngresos, [ingresos.anticipada_online, ingresos.anticipada_tienda, ingresos.taquilla, ingresos.concierto_id]);                        
+                                  'anticipada_online = ?, anticipada_tienda = ? , taquilla_tarjeta = ?, taquilla_efectivo = ? WHERE concierto_id = ?;';
+            await db.query(queryIngresos, [ingresos.anticipada_online, ingresos.anticipada_tienda, ingresos.taquilla_tarjeta, ingresos.taquilla_efectivo, ingresos.concierto_id]);
             // TODO modificar este redirect sin el nombre y el total
             const user_id = ingresos.user_id;
+            const precio = await db.query(`SELECT precio_anticipada FROM ingresos WHERE concierto_id=${ingresos.concierto_id}`)
+            const ticketing = precio[0][0].precio_anticipada * ingresos.anticipada_online * 0.03;
+            await db.query(`UPDATE gastos SET ticketing = ${ticketing} WHERE concierto_id = ${ingresos.concierto_id}`)
             res.redirect(`/gira/bolo/?id=${ingresos.concierto_id}&nombre=${ingresos.nombre}&total=${ingresos.total}&user_id=${user_id}`);
         } else if (req.body.formType == 'notas') {
             const notas = req.body.notas;

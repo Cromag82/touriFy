@@ -54,7 +54,7 @@ CREATE TABLE gastos (
 	coste_sala DOUBLE DEFAULT 0.00,
 	extras_sala DOUBLE DEFAULT 0.00,
 	taxis DOUBLE DEFAULT 0.00,
-	iva DOUBLE DEFAULT 0.00,
+	ticketing DOUBLE DEFAULT 0.00,
 	sgae DOUBLE DEFAULT 0.00
 );
 
@@ -62,10 +62,12 @@ CREATE TABLE ingresos(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	concierto_id INT NOT NULL, 
 	precio_anticipada double DEFAULT 0.00,
+	gastos_gestion double DEFAULT 0.00,
 	anticipada_online double DEFAULT 0.00, 
 	anticipada_tienda double DEFAULT 0.00,
 	precio_taquilla double DEFAULT 0.00,
-	taquilla double DEFAULT 0.00
+	taquilla_tarjeta double DEFAULT 0.00,
+	taquilla_efectivo double DEFAULT 0.00
 );
 
 CREATE TABLE usuario_giras (

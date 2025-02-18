@@ -85,8 +85,8 @@
                             <td><input type="text" name="taxis" value="<%= g.taxis %>"></td>
                         </tr>
                         <tr>
-                            <td>Iva</td>
-                            <td><input type="text" name="iva" value="<%= g.iva %>"></td>
+                            <td>Ticketing</td>
+                            <td><%= g.ticketing %></td>
                         </tr>
                         <tr>
                             <td>Sgae</td>
@@ -126,17 +126,48 @@
                             <td><%= i.totalAnticipadaOnline %></td>
                         </tr>
                         <tr>
+                            <td>Gastos</td>
+                            <td><%= i.gastos_gestion %></td>
+                            <td><%= i.anticipada_online %></td>
+                            <td><%= i.totalGastos_gestion %></td>
+                        </tr>
+                        <tr>
                             <td>Física</td>
                             <td><%= i.precio_anticipada %></td>
                             <td><input type="text" name="anticipada_tienda" value="<%= i.anticipada_tienda %>"></td>
                             <td><%= i.totalAnticipadaTienda %></td>
                         </tr>
                         <tr>
-                            <td>Taquilla</td>
+                            <td>Taquilla tarjeta</td>
                             <td><%= i.precio_taquilla %></td>
-                            <td><input type="text" name="taquilla" value="<%= i.taquilla %>"></td>
-                            <td><%= i.totalTaquilla %></td>
+                            <td><input type="text" name="taquilla_tarjeta" value="<%= i.taquilla_tarjeta %>"></td>
+                            <td><%= i.totalTaquilla_tarjeta %></td>
                         </tr>
+                        <tr>
+                            <td>Taquilla efectivo</td>
+                            <td><%= i.precio_taquilla %></td>
+                            <td><input type="text" name="taquilla_efectivo" value="<%= i.taquilla_efectivo %>"></td>
+                            <td><%= i.totalTaquilla_efectivo %></td>
+                        </tr>
+                        <tr>
+                            <td>IVA anticipada online</td>
+                            <td></td>
+                            <td></td>
+                            <td><%= i.ivaAnticipadaOnline %></td>
+                        </tr>
+                        <tr>
+                            <td>IVA gastos gestión</td>
+                            <td></td>
+                            <td></td>
+                            <td><%= i.ivaGastos %></td>
+                        </tr>
+                        <tr>
+                            <td>IVA taquilla tarjeta</td>
+                            <td></td>
+                            <td></td>
+                            <td><%= i.ivaTaquilla_tarjeta %></td>
+                        </tr>
+
                         <input type="hidden" name="nombre" value="<%= nombre %>">
                         <input type="hidden" name="user_id" value="<%= user_id %>">
                         <button type="submit">Actualizar ventas</button>
