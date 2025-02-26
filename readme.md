@@ -17,10 +17,10 @@ Esta primera versión del 12/2/2024 no es más que un embrión del desarrollo. H
 Este proyecto no tiene un front-end, sino unas vistas en ```.ejs```. En el futuro añadiré un front-end para mejorar la escalabilidad del proyecto.
 
 ### Tecnologías usadas
-- Node.js
-- Express
-- MySQL
-- JWT
+- Node.js 20.10.0
+- Express 4.21.2
+- MySQL 10.4.32-MariaDB
+- JWT 9.0.2
 
 ### Pre-Instalación
 En el archivo ```assets\setup.sql``` se genera una base de datos llamada ```de_gira```. Si desea cambiar el nombre de la base de datos, debe hacerlo en el archivo ```assets\setup.sql``` (fila 1) como en el conector en el archivo ```src\models\database_connector.js``` (fila 7).
